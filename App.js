@@ -10,15 +10,18 @@ import Register from './pages/Register';
 const Stack = createStackNavigator()
 
 export default function App() {
+
+
   return (
     <NavigationContainer>
        <Stack.Navigator>
         <Stack.Screen
           name="Home"
           component={Welcome}
-          options={{ title: 'Welcome', headerShown: false }}
+          options={{ title: 'Welcome', headerShown: false}}
         />
-        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Login" component={Login} 
+          options={{title:'', headerBackTitleVisible:false, headerTintColor:'#fff', headerStyle: {backgroundColor : '#7D57FE'}}} />
         <Stack.Screen name="Register" component={Register} />
       </Stack.Navigator>
     </NavigationContainer>

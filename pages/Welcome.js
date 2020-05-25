@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, Component } from 'react'
-import { StyleSheet, Button, View, Text, TouchableOpacity, ImageBackground } from 'react-native';
-
+import { StyleSheet, View, Text, TouchableOpacity, ImageBackground } from 'react-native';
+import CustomButton from '../utils/CustomButton';
 
 function Welcome({ navigation }) {
     const imageSrc = require('../assets/background.png')
@@ -12,19 +12,18 @@ function Welcome({ navigation }) {
             style={styles.imgBackground}
             resizeMode="cover" source={imageSrc}>
             <View style={styles.bottomView}>
-                <TouchableOpacity
-                    style={styles.buttonLogin}
-                    onPress={() => navigation.navigate('Login')}
-                >
-                    <Text style={styles.buttonText}>Ingresar</Text>
-                </TouchableOpacity>
+                <CustomButton 
+                style={styles.buttonLogin}
+                onPress={() => navigation.navigate('Login')}>
+                    Ingresar
+                </CustomButton>
 
-                <TouchableOpacity
-                    style={styles.buttonRegister}
-                    onPress={() => navigation.navigate('Register')}
-                >
-                    <Text style={styles.buttonText}>Registrarse</Text>
-                </TouchableOpacity>
+                   <CustomButton 
+                style={styles.buttonRegister}
+                onPress={() => navigation.navigate('Register')}>
+                    Registrarse
+                </CustomButton>              
+
             </View>
         </ImageBackground>
 
@@ -38,26 +37,21 @@ const styles = StyleSheet.create({
         height: '100%',
         flex: 1
     },
-    bottomView: { flexDirection: 'row', flex: 1, position:'absolute', bottom: 0, marginBottom: 50},
+    bottomView: { flexDirection: 'row', flex: 2, position:'absolute', bottom: 0, marginBottom: 50},
     buttonLogin: {
-        height: 40,
-        width: '42%',
         marginTop: 10,
+        width: '100%',
         paddingTop: 10,
         marginLeft: 15,
-        marginRight: 15,
+        marginRight: '25%',
         backgroundColor: '#3CB9F9',
-        borderRadius: 20,
-        borderWidth: 0,
-        borderColor: '#fff'
     },
      buttonRegister: {
-        height: 40,
-        width: '42%',
+        width: '100%',
         marginTop: 10,
         paddingTop: 10,
-        marginLeft: 15,
-        marginRight: 20,
+        marginLeft: 25,
+        marginRight: '20%',
         backgroundColor: '#7D57FE',
         borderRadius: 20,
         borderWidth: 0,

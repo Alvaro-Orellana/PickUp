@@ -10,11 +10,10 @@ function Register({ navigation }) {
 
     return (
        <View style={styles.container}>
-           <Text>Register </Text>
+           <Text>Register</Text>
        </View>
 
     )
-
 }
 
 const styles = StyleSheet.create({

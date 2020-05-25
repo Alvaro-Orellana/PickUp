@@ -20,13 +20,14 @@ function Login({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: '#7D57FE',
       },
-    imgBackground: {
+    background: {
         width: '100%',
         height: '100%',
+        
         flex: 1
     },
     bottomView: { flexDirection: 'row', flex: 1, position:'absolute', bottom: 0, marginBottom: 50},
