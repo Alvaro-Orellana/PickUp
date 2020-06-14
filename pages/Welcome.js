@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, Component } from 'react'
 import { StyleSheet, View, Text, TouchableOpacity, ImageBackground } from 'react-native';
-import CustomButton from '../utils/CustomButton';
+import CustomButton from '../components/CustomButton';
 
 function Welcome({ navigation }) {
     const imageSrc = require('../assets/background.png')

@@ -1,17 +1,16 @@
 
 
 import React, { useEffect, useState } from 'react'
-import { useFonts } from '@use-expo/font';
 import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 import { StyleSheet, Button, View, Text, TouchableOpacity, ImageBackground } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
-import CustomButton from '../utils/CustomButton';
+import CustomButton from '../components/CustomButton';
 
 
 
 
-function Login() {
+function Login({ navigation }) {
 
     const [fontsAreLoaded, setFontAreLoaded] = useState(false)
     const [userText, onChangeUsername] = useState('')
@@ -26,6 +25,10 @@ function Login() {
             setFontAreLoaded(true)
         })();
     })
+
+    const onSubmit = () => {
+        navigation.navigate('BottomNavigator')
+    }
 
     if (!fontsAreLoaded) {
         return <AppLoading />
@@ -50,6 +53,7 @@ function Login() {
                     </TouchableOpacity>
                 </View>
                 <CustomButton
+                    onPress={onSubmit}
                     style={styles.buttonLogin}
                 >INGRESAR</CustomButton>
                 <View style={{ flexDirection: 'row', marginTop: 20}}>

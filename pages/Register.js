@@ -4,7 +4,7 @@ import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 import { StyleSheet, Button, View, Text, TouchableOpacity, ImageBackground } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
-import CustomButton from '../utils/CustomButton';
+import CustomButton from '../components/CustomButton';
 
 function Register({ navigation }) {
     const [mail, onChangeMail] = React.useState()

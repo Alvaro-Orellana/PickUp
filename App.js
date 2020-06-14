@@ -6,6 +6,8 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Home from './pages/Home';
+import BottomNavigator from './components/BottomNavigator';
 
 const Stack = createStackNavigator()
 
@@ -23,9 +25,12 @@ export default function App() {
         <Stack.Screen name="Login" component={Login} 
           options={{title:'', headerBackTitleVisible:false, headerTintColor:'#fff', headerStyle: {backgroundColor : '#7D57FE'}}} />
         <Stack.Screen name="Register" component={Register}
-        options={{title:'', headerBackTitleVisible:false, headerTintColor:'#fff', headerStyle: {backgroundColor : '#7D57FE'}}}/>
+        options={{title:'', headerBackTitleVisible:false, headerTintColor:'#fff', headerStyle: {backgroundColor : '#7D57FE'}}}/>           
+        <Stack.Screen name="BottomNavigator" component={BottomNavigator}
+        options={{title:'Home', headerLeft:null, headerBackTitleVisible:false, headerTintColor:'#fff', headerStyle: {backgroundColor : '#7D57FE'}}}/>
       </Stack.Navigator>
     </NavigationContainer>
+  
 
   );
 }
