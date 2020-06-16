@@ -8,7 +8,6 @@ function Home({ navigation }){
         const unsubscribe = navigation.addListener('focus', () => {
           // The screen is focused
           // Call any action
-          console.log("asdssssss")
           navigation.setOptions({ title: 'asd' })
         });
       
