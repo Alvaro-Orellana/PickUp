@@ -19,4 +19,14 @@ function Profile({ navigation }){
     return  <Text>Perfil</Text>
 }
 
+
+Profile.navigationOptions = () => {
+    return {
+        headerTintColor: "white",
+        headerStyle: {
+          backgroundColor: '#7D57FE'
+        },       
+    }
+}
+
 export default Profile

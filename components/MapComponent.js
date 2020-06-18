@@ -12,11 +12,12 @@ export default class MapComponent extends Component {
         super(props);
         this.state = {
             position : {
-                latitude: 0,
-                longitude: 0,
+                //Cordenadas de Buenos Aires
+                latitude:-34.6211276,  
+                longitude: -58.4309524,
                 //Los delta se refieren al zoom que va a hacer el mapa en la pantalla
-                latitudeDelta: 0.01,
-                longitudeDelta: 0.01
+                latitudeDelta: 0.17,
+                longitudeDelta: 0.17
             
             },
             mapa: null,
@@ -49,7 +50,7 @@ export default class MapComponent extends Component {
             var longitud = parseFloat(position.coords.longitude);
 
             //objeto con coordenadas necesarias para ocupar MapView
-            const posicionInicial = {
+            const currentPosition = {
                 latitude: latitud,
                 longitude: longitud,
                 latitudeDelta: 0.01,
@@ -57,7 +58,7 @@ export default class MapComponent extends Component {
             }
 
             //Actualizo el estado con los datos obtenidos
-            this.setState({position : posicionInicial});
+            this.setState({position : currentPosition});
                 
         }, error => {
                 alert("No se pudo obtener la localizacion")
@@ -97,6 +98,7 @@ export default class MapComponent extends Component {
     render(){
         return(
                 < MapView
+                    initialRegion={this.state.position}
                     ref={map => this.mapa = map}
                     region={this.state.position}
                     showsUserLocation={true}
@@ -104,7 +106,6 @@ export default class MapComponent extends Component {
                     rotateEnabled={true}
                     style={styles.mapStyle}
                 >    
-
                     <CurrentLocationButton  callBack={ () => this.centrarMapa()}/>
 
                     <Conductor conductor={{position: { latitude: -34.60, longitude: -58.39}}}/>

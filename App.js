@@ -1,34 +1,59 @@
+import React from "react"
 import { createAppContainer, createSwitchNavigator } from "react-navigation"
 import { createStackNavigator } from 'react-navigation-stack'
 import { createBottomTabNavigator} from "react-navigation-tabs"
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
 
+
+// Todas las paginas que muestra la app
 import WelcomePage from './pages/Welcome'
 import LoginPage from './pages/Login';
 import RegisterPage from './pages/Register';
 import HomePage from './pages/Home';
 import HistoryPage from "./pages/History";
 import ProfilePage from "./pages/Profile"
+import LoaderPage from "./pages/Loader"
+import DriverFoundPage from "./pages/DriverFound"
 
 
- import LoaderPage from "./pages/Loader"
- import DriverFoundPage from "./pages/DriverFound"
 
 
 
 const BottomTabNavigatorConfig = {
-  tabBarOptions: {
-    activeTintColor: "white",
-    inactiveTintColor: "#C7C7CC",
-    tabStyle: {
-      backgroundColor: '#7D57FE',
-    },
-  },
+  defaultNavigationOptions : ({navigation}) => {
+    return {
 
+      tabBarOptions: {
+        activeTintColor: "white",
+        inactiveTintColor: "#C7C7CC",
+        tabStyle: {
+          backgroundColor: '#7D57FE',
+        },
+      },
+
+      tabBarIcon: ({tintColor}) => {
+        const {routeName} = navigation.state
+        let currentIcon
+        if(routeName == "Home") {
+          currentIcon = "magnify"
+
+        } else if (routeName == "History") {
+          currentIcon = "clipboard-text"
+        
+        } else {
+          currentIcon = "account"
+        }
+        return <MaterialCommunityIcons name={currentIcon} color={tintColor} size={26} />
+      }  
+    } 
+  }
 }
 
 
+
+//----------Estructura de la App-----------------------------------------------
 
 //SwitchNavigator servira para decidir que flujo toma la app. La primera vez
 //que alguien ingresa, lo llevara a Welcome, Login o Register. Pero si ya
@@ -41,27 +66,26 @@ const switchNavigator = createSwitchNavigator({
   //   Login: LoginPage
   // }),
 
-  mainFlow: createStackNavigator({
+  mainFlow: createBottomTabNavigator({
     
-    TabNavigator : createBottomTabNavigator({  
-      Home: createStackNavigator({
-        Home: HomePage,
-        Loader: LoaderPage,
-        DriverFound: DriverFoundPage
-       
-      }),
-      History: HistoryPage,
+    Home: createStackNavigator({
+      Home: HomePage,
+      Loader: LoaderPage,
+      DriverFound: DriverFoundPage
+      
+    }),
+
+    History: createStackNavigator({
+      History: HistoryPage
+    }),
+
+    Profile: createStackNavigator({
       Profile: ProfilePage,
+    })
 
-     
-    }, BottomTabNavigatorConfig),
-
-   
-  })
+  }, BottomTabNavigatorConfig)
 
 })
-
-
 
 
 export default createAppContainer(switchNavigator)

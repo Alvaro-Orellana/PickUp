@@ -1,5 +1,5 @@
 import React from "react";
-import {View, Text, StyleSheet, Dimensions} from "react-native";
+import {View, Text, StyleSheet} from "react-native";
 import ProfileImage from "../components/ProfileImage"
 
 const DriverFound = ({navigation}) => {
@@ -8,7 +8,6 @@ const DriverFound = ({navigation}) => {
     const datosRecibidos = navigation.getParam("datosConductor")
     const datosConductor = datosRecibidos.infoConductor
    
-
 
     return(
         <View style={styles.container}>
@@ -37,14 +36,6 @@ const DriverFound = ({navigation}) => {
         </View>
     )
 
-}
-
-
-
-DriverFound.navigationOptions = () => {
-    return {
-        headerShown: false
-    }
 }
 
 

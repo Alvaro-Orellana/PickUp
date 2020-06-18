@@ -32,6 +32,7 @@ function Home({ navigation }) {
     //para hacer llamada a Backend
     const [datosCliente, setDatosCliente] = useState({});
 
+    const [destinationIsWritten, setDestinationIsWrittten] = useState(false)
 
     //Se activa cuado el usuario presiona enter en el teclado.
     //Guarda el texto que habia en el text input y arma un objeto 
@@ -53,26 +54,40 @@ function Home({ navigation }) {
                 longitud: -58.39,
             }
         }
-        setDatosCliente(datosAEnviar)
+        //setDatosCliente(datosAEnviar)
+        setDestinationIsWrittten(true)
     }
 
-
-    return (
-        
-        <View style={styles.container}>
-                <MapComponent />
+    if(destinationIsWritten){
+        return(
+            <View style={styles.container}>
 
             <DestinationBar 
                 texto={texto}
                 onTextChange={nuevoTexto => setTexto(nuevoTexto)}
                 onTextSubmit={guardarDireccionEscrita}
             />
-            <BuscarConductorButton 
+          
+          <BuscarConductorButton 
                 datosCliente={datosCliente}
-                />
+            />              
+            <MapComponent />
+
 
         </View>
-    )
+        )
+    } else {
+        return (
+            <View style={styles.container}>
+                <DestinationBar 
+                    texto={texto}
+                    onTextChange={nuevoTexto => setTexto(nuevoTexto)}
+                    onTextSubmit={guardarDireccionEscrita}
+                />            
+                <MapComponent />
+            </View>
+        )
+    }
     //Cuando se presionaa BuscarConductorButton envia los datos del usuario
     //que genere en la funcion guardarDireccionEscrita y los envia a WaintingScreen
 }

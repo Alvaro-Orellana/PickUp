@@ -13,7 +13,7 @@ export async function searchDriver(datosPasajero)  {
       }
 
 
-                                    //Direccion IP local
+      //                            Direccion IP local
       let respuesta = await fetch('http://192.168.0.141:3000/api/reserva', options) 
       let datosConductor = await respuesta.json();
       return datosConductor

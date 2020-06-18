@@ -31,6 +31,16 @@ function Welcome({ navigation }) {
 
 }
 
+
+
+Welcome.navigationOptions = () => {
+    return {
+        headerShown: false      
+    }
+}
+
+
+
 const styles = StyleSheet.create({
     imgBackground: {
         width: '100%',
