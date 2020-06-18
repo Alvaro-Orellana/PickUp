@@ -1,6 +1,6 @@
 
-import React, { useState, useEffect, Component } from 'react'
-import { StyleSheet, Button, View, Text, TouchableOpacity, ImageBackground } from 'react-native';
+import React from 'react'
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
 
 

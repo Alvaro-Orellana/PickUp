@@ -1,22 +1,100 @@
 
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Button, View, Text, TouchableOpacity, ImageBackground } from 'react-native';
+import { View, StyleSheet, Dimensions} from 'react-native';
 
-function Home({ navigation }){
+import MapComponent from '../components/MapComponent'
+import DestinationBar from "../components/DestinationBar"
+import BuscarConductorButton from "../components/BuscarConductorButton"
 
-    React.useEffect(() => {
-        const unsubscribe = navigation.addListener('focus', () => {
-          // The screen is focused
-          // Call any action
-          navigation.setOptions({ title: 'asd' })
-        });
+
+
+function Home({ navigation }) {
+
+    // React.useEffect(() => {
+    //     const unsubscribe = navigation.addListener('focus', () => {
+    //       // The screen is focused
+    //       // Call any action
+    //       navigation.setOptions({ title: 'asd' })
+    //     });
       
-        // Return the function to unsubscribe from the event so it gets removed on unmount
-        return unsubscribe;
-      }, [navigation]);
+    //     // Return the function to unsubscribe from the event so it gets removed on unmount
+    //     return unsubscribe;
+    //   }, [navigation]);
+
+
+
 
     
-    return  <Text>Home</Text>
+    //Usado para obtner el texto que escriba el usuario en DestinationBar
+    const [texto, setTexto] = useState("");
+
+    //El objeto que va a pasar a WaitingScreen con toda la informacion necesaria
+    //para hacer llamada a Backend
+    const [datosCliente, setDatosCliente] = useState({});
+
+
+    //Se activa cuado el usuario presiona enter en el teclado.
+    //Guarda el texto que habia en el text input y arma un objeto 
+    //con todos los datos del del usuario
+    const guardarDireccionEscrita = () => {
+        
+        
+        const datosAEnviar = {
+            usuario : {
+                nombre: "Nombre Usuario",
+                apellido: "Apellido Usuario",
+                imagen: "Aca podria enviarse la imagen del usuario"
+            }, 
+            direccion: texto,
+            //Aca tengo que obtener las coordenadas correctas
+            //Por ahora van a estar hardcodeadas
+            coordenadas: {                 
+                latitud: -34.60,
+                longitud: -58.39,
+            }
+        }
+        setDatosCliente(datosAEnviar)
+    }
+
+
+    return (
+        
+        <View style={styles.container}>
+                <MapComponent />
+
+            <DestinationBar 
+                texto={texto}
+                onTextChange={nuevoTexto => setTexto(nuevoTexto)}
+                onTextSubmit={guardarDireccionEscrita}
+            />
+            <BuscarConductorButton 
+                datosCliente={datosCliente}
+                />
+
+        </View>
+    )
+    //Cuando se presionaa BuscarConductorButton envia los datos del usuario
+    //que genere en la funcion guardarDireccionEscrita y los envia a WaintingScreen
 }
+
+
+
+Home.navigationOptions = () => {
+    return {
+        headerShown: false      
+    }
+}
+
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: "#fff"
+    },
+    mapStyle: {
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height,
+    },
+  });
 
 export default Home

@@ -4,17 +4,17 @@ import { StyleSheet, Button, View, Text, TouchableOpacity, ImageBackground } fro
 
 function Profile({ navigation }){
 
-    React.useEffect(() => {
-        const unsubscribe = navigation.addListener('focus', () => {
-          // The screen is focused
-          // Call any action
-          console.log("asdssssss")
-          navigation.setOptions({ title: 'asd' })
-        });
+    // React.useEffect(() => {
+    //     const unsubscribe = navigation.addListener('focus', () => {
+    //       // The screen is focused
+    //       // Call any action
+    //       console.log("asdssssss")
+    //       navigation.setOptions({ title: 'asd' })
+    //     });
       
-        // Return the function to unsubscribe from the event so it gets removed on unmount
-        return unsubscribe;
-      }, [navigation]);
+    //     // Return the function to unsubscribe from the event so it gets removed on unmount
+    //     return unsubscribe;
+    //   }, [navigation]);
 
     return  <Text>Perfil</Text>
 }
