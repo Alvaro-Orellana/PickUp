@@ -54,27 +54,25 @@ function Home({ navigation }) {
                 longitud: -58.39,
             }
         }
-        //setDatosCliente(datosAEnviar)
+        setDatosCliente(datosAEnviar)
         setDestinationIsWrittten(true)
     }
 
     if(destinationIsWritten){
         return(
             <View style={styles.container}>
+                <DestinationBar 
+                    texto={texto}
+                    onTextChange={nuevoTexto => setTexto(nuevoTexto)}
+                    onTextSubmit={guardarDireccionEscrita}
+                />
+            
+                <BuscarConductorButton 
+                    datosCliente={datosCliente}
+                />              
+                <MapComponent />
 
-            <DestinationBar 
-                texto={texto}
-                onTextChange={nuevoTexto => setTexto(nuevoTexto)}
-                onTextSubmit={guardarDireccionEscrita}
-            />
-          
-          <BuscarConductorButton 
-                datosCliente={datosCliente}
-            />              
-            <MapComponent />
-
-
-        </View>
+            </View>
         )
     } else {
         return (

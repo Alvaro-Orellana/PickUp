@@ -11,6 +11,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import WelcomePage from './pages/Welcome'
 import LoginPage from './pages/Login';
 import RegisterPage from './pages/Register';
+import RegisterDataPage from "./pages/RegisterData"
 import HomePage from './pages/Home';
 import HistoryPage from "./pages/History";
 import ProfilePage from "./pages/Profile"
@@ -65,6 +66,7 @@ const switchNavigator = createSwitchNavigator({
   //   Register: RegisterPage,
   //   Login: LoginPage
   // }),
+  RegisterData: RegisterDataPage,
 
   mainFlow: createBottomTabNavigator({
     

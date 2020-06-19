@@ -28,7 +28,7 @@ function Register({ navigation }) {
     try{
         //Guardo firebaseUser por si despues necesitamos pasarlo a otra pantalla
         const firebaseUser = await registerWithFirebase(mail, password)        
-        navigation.navigate("BottomNavigator")
+        navigation.navigate("RegisterData")
 
     } catch(error) {
         alert(error)
