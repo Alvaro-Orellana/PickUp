@@ -1,12 +1,13 @@
 
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Button, View, Text, TextInput } from 'react-native';
-
-import { AppLoading } from "expo";
-import * as Font from "expo-font";
+import { StyleSheet, View, Text, TextInput, Button } from 'react-native';
 import { Ionicons } from "@expo/vector-icons";
+import { ScrollView } from 'react-native-gesture-handler';
 
+import CustomButton from '../components/CustomButton';
 import ProfileImage from "../components/ProfileImage"
+import {singOutOfFireBase} from "../services/UserService"
+import EditableInfo from '../components/EditableInfo';
 
 
 function Profile({ navigation }){
@@ -27,96 +28,53 @@ function Profile({ navigation }){
     const [name, onChangeName] = useState("");
     const [lastName, onChangeLastName] = useState("");
     const [age, onChangeAge] = useState("");
-    const [description, setDescription] = useState("")
+    const [description, setDescription] = useState("");
     
 
-    const [fontsAreLoaded, setFontAreLoaded] = useState(false);
 
-  
-    useEffect(() => {
-      (async function loader() {
-        await Font.loadAsync({
-          SF_Pro_Text: require("../assets/fonts/SFProText.ttf"),
-        });
-        setFontAreLoaded(true);
-      })();
-    });
+    function saveData () {  
+        console.log("savng data...");
+        console.log("the state is ", name, lastName, age, description);
+        //const texto = getUserData()
+    }  
 
-
-    if(fontsAreLoaded) {
-        return  (
-            <View style={styles.container}>
-    
-                <View style={{flexDirection: "row", }}> 
-                    <ProfileImage tamaño={120} imagen={true} />
-    
-                    <View style={{ flex: 1}}>
-                        <View                 
-                            style={styles.leftColumn}> 
-                            <Ionicons
-                                name={`md-car`} 
-                                size={25}   
-                                color={`black`}  
-                                style={{alignSelf: `center`}}
-                            />
-                        </View>
-    
-                        <TextInput
-                            placeholder="Nombre"
-                            placeholderTextColor="gray"
-                            autoCapitalize="none"
-                            style={styles.inputText}
-                            onChangeText={(text) => onChangeName(text)}
-                            value={name}
-                        />
-                        
-                        <TextInput
-                            placeholder="Apellido"
-                            placeholderTextColor="gray"
-                            autoCapitalize="none"
-                            style={styles.inputText}
-                            onChangeText={(text) => onChangeLastName(text)}
-                            value={lastName}
-                        />
-                    </View>
-                </View>
-    
-                <Text style={styles.titleText}> Informacion</Text>
-    
-               <TextInput
-                    placeholder="Edad"
-                    placeholderTextColor="gray"
-                    autoCapitalize="none"
-                    style={styles.inputText}
-                    onChangeText={(text) => onChangeAge(text)}
-                    value={age}
-                />
-    
-                <TextInput
-                    placeholder="Descripcion"
-                    placeholderTextColor="gray"
-                    autoCapitalize="none"
-                    style={styles.inputText}
-                    onSubmitEditing
-                    onChangeText={(text) => setDescription(text)}
-                    value={description}
-                />
-
-                    <Text
-                    style={{
-                        textDecorationLine: "underline",
-                        color: "black",
-                        fontFamily: "SF_Pro_Text",
-                    }}
-                    >
-                    texto de prueba
-                    </Text>
-
-            </View>
-        )
-    } else {
-        return  <AppLoading/>
+    function singOut() {
+        singOutOfFireBase()
+        navigation.navigate("loginFlow")
     }
+
+    
+    
+
+        return  (
+           <ScrollView 
+                style={styles.container}
+                contentInset={{top: 0, left: 0, bottom: 300, right: 0}}
+           >
+
+                    <View style={     {   alignItems: "center"}}>
+                    <ProfileImage tamaño={130} imagen={true}  />
+                    </View>
+
+                    <Text style={styles.infoText}> Informacion</Text>
+
+                    <EditableInfo onChangeText={onChangeName} value={name} placeholder="Nombre y Apellido" saveData={saveData}/>
+
+                    <EditableInfo onChangeText={onChangeLastName} value={lastName} placeholder="Email" saveData={saveData}/>
+
+                    <EditableInfo onChangeText={onChangeAge} value={age} placeholder="Auto" saveData={saveData}/>
+
+                    <EditableInfo onChangeText={setDescription} value={description} placeholder="Patente" saveData={saveData}/>
+
+                    <CustomButton
+                        onPress={singOut}
+                        style={styles.buttonLogOut}
+                    >
+                        Salir de mi cuenta
+                    </CustomButton>
+           </ScrollView>
+        )
+   
     
 }
 
@@ -125,7 +83,7 @@ Profile.navigationOptions = () => {
     return {
         headerTintColor: "white",
         headerStyle: {
-          backgroundColor: '#7D57FE'
+          backgroundColor: '#7D57FE',
         },       
     }
 }
@@ -133,33 +91,22 @@ Profile.navigationOptions = () => {
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      flexDirection: "column",
       paddingTop: "5%",
     },
-    titleText: {
-      fontFamily: "SF_Pro_Text",
-      color: "black",
-      fontSize: 24,
-      alignItems: "flex-start",
-
-
+    infoText: {
+        color: "black",
+        fontSize: 38,
+        fontWeight: '500',
     },
-    inputText: {
-      height: 50,
-      borderColor: "gray",
-      borderWidth: 1,
-      backgroundColor: "#EFEFF4",
-      width: "90%",
-      marginTop: "10%",
-      color: "black",
-      borderRadius: 8,
-      paddingLeft: 15,
+    buttonLogOut: {
+        marginTop: 70,
+        marginHorizontal: 100,
+        width: '50%',
+        paddingTop: 10,
+        backgroundColor: '#3CB9F9',
     },
-    leftColumn: {
-        flex: 1,
-        alignItems: "center",
-    },
+   
+  
 })
 
 

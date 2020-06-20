@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, ScrollView, View, Text, TextInput, Picker} from "react-native";
 
 import CustomButton from "../components/CustomButton";
-import {registerWithFirebase} from "../services/UserService"
+import {savePassengerData, saveDriverData} from "../services/UserService"
 
 
 function RegisterData({ navigation }) {
@@ -23,21 +23,19 @@ function RegisterData({ navigation }) {
   //Guarda los datos escritos por el usuario a Firebase
   async function saveUserData() {
     try{
-        console.log("Save user data pressed");
         if(userType == "Pasajero") {
-            let userData = {
+            let passenger = {
                 name: name,
                 lastName: lastName,
                 userType: userType
             }
 
             //funcion para guardar pasajeros
-            console.log(userData);
-            
+            await savePassengerData(passenger)            
         
         } else {
             //El usuario selecciono conductor
-            let userData = {
+            let driver = {
                 name: name,
                 lastName: lastName,
                 userType: userType,
@@ -49,10 +47,11 @@ function RegisterData({ navigation }) {
             }
 
             //funcion para guardar conductores
-            console.log(userData);
+            await saveDriverData(driver)
             
         }
-           
+        
+        navigation.navigate("mainFlow")
         // const firebaseUser = await registerWithFirebase(mail, password)        
         // navigation.navigate("BottomNavigator")
 

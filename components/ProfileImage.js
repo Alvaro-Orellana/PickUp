@@ -8,12 +8,22 @@ const ProfileImage = ({imagen, tamaño}) => {
     //una por default
     if(imagen){
         return(
-             <Image 
-                //Aca en vez de require, averiguar como mostrar una imagen
-                //pasada por json
-                source={require('../assets/imagen-de-prueba.jpeg')}  
-                style={{width: tamaño, height: tamaño, borderRadius: 200}} 
-            />
+            <View 
+            style={{ width: tamaño,
+                    height: tamaño,
+                    borderRadius: 200,
+                    overflow: "hidden",
+                    borderWidth: 4,
+                    borderColor: "#4CD964"
+                    }}
+            >
+                <Image 
+                    //Aca en vez de require, averiguar como mostrar una imagen
+                    //pasada por json
+                    source={require('../assets/imagen-de-prueba.jpeg')}  
+                    style={{width: tamaño, height: tamaño, borderRadius: 200}} 
+                />
+            </View>
         )
     } else {
        return (     
@@ -29,7 +39,15 @@ const styles = StyleSheet.create({
         // borderRadius: 50, 
         // borderWidth: 10, 
         // borderColor: "white", 
-    }
+    },
+    profileImgContainer: {
+        width: 150,
+        height: 150,
+        borderRadius: 150 / 2,
+        overflow: "hidden",
+        borderWidth: 3,
+        borderColor: "red"
+      },
 })
 
 
