@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {View, Text, StyleSheet} from "react-native";
-import {searchDriver} from "../services/searchDriver"
+import {searchDriver} from "../services/SearchDriverService"
 
 import { Entypo, FontAwesome} from "@expo/vector-icons";
 import LottieView from "lottie-react-native"

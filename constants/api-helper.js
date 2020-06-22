@@ -1,0 +1,1 @@
+export const API_URL = "https://pickup3-be.herokuapp.com/v1"

@@ -1,46 +1,72 @@
-import auth from "./Firebase/Firebase";
-import {dataBase} from "./Firebase/Firebase"
+import { API_URL } from "../constants/api-helper";
+import StoreService from "./StoreService";
+
 
 //Funcionalidad de conexion con Firebase. Estas funciones permiten que
 //las pantallas que necesiten puedan realizar una operacion con firebase
 //abstrayendp la responsabilidad a las funciones de este archivo
 
-
-
+export default class UserService {
 //Ocupada en Login.js
-export async function signInWithFirebase(email, password) {
+  static async  singIn(email, password) {
   try {
-    const firebaseUser =  await auth.signInWithEmailAndPassword(email, password);
-    console.log("Success singing in with Firebase");
-    return firebaseUser;
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+    }
+    const response =  await fetch(`${API_URL}/public/auth/login`, requestOptions);
+    console.log(response);
+    if(response.code == 200){
+        const { data } = response;
+        StoreService.SaveData("access_token", data.access_token);
+        StoreService.SaveData("user", data.user);
+        return data.user;
+    }
+
+    console.log("Success singing in");
+    return null;
 
   } catch (error) {
-    console.log("Error signing in with Firebase", error);
+    console.log("Error signing", error);
     throw error
   }
 }
 
 
 //Ocupada en Register.js
-export async function registerWithFirebase(email, password) {
-  try {
-    const firebaseUser =  await auth.createUserWithEmailAndPassword(email, password);
-    console.log("Success registering new user in Firebase");
-    return firebaseUser
-
-  } catch (error) {
-    console.log("Error registering user in Firebase", error);
-    throw error
-  }
+static async  register(user) {
+    try {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(user)
+        }
+        const response =  await fetch(`${API_URL}/public/register`, requestOptions);
+    
+        if(response.code == 200){
+            const { data } = response;
+            StoreService.SaveData("access_token", data.access_token);
+            StoreService.SaveData("user", data.user);
+            return data.user;
+        }
+    
+        console.log("Success registering");
+        return null;
+    
+      } catch (error) {
+        console.log("Error registering", error);
+        throw error
+      }
 }
 
 
 
-export async function singOutOfFireBase() {
+static async singOut() {
   
   try{
-    await auth.signOut()
-    console.log("Success signing out of Firebase");
+    await StoreService.Clear()
+    console.log("Success signing out");
   
   } catch(error){
     console.log(error);  
@@ -52,7 +78,7 @@ export async function singOutOfFireBase() {
 
 
 //Ocupada en RegisterData.js cuando el usuario elige Pasajero
-export async function savePassengerData(passenger){
+static async savePassengerData(passenger){
 
   try {
     const snapshot = await dataBase.collection(`testUsers`).add(passenger)
@@ -65,7 +91,7 @@ export async function savePassengerData(passenger){
 
 
 //Ocupada en RegisterData.js cuando el usuario elige Conductor
-export async function saveDriverData(driver){
+static async saveDriverData(driver){
   
   try{
     const snapshot = await dataBase.collection(`testUsers`).add(driver)
@@ -78,7 +104,7 @@ export async function saveDriverData(driver){
 
 
 //Ocupada en Profile.js par obtener los datos del usuario
-export async function getUserData(){
+static async getUserData(){
 
   let userID = auth.currentUser.uid
   
@@ -112,3 +138,5 @@ this.afs.firestore.collection('posts').where('user', '==', uid).get().then(posts
   }))
 })
  */
+}
+

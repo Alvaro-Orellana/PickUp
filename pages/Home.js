@@ -9,22 +9,7 @@ import BuscarConductorButton from "../components/BuscarConductorButton"
 
 
 function Home({ navigation }) {
-
-    // React.useEffect(() => {
-    //     const unsubscribe = navigation.addListener('focus', () => {
-    //       // The screen is focused
-    //       // Call any action
-    //       navigation.setOptions({ title: 'asd' })
-    //     });
-      
-    //     // Return the function to unsubscribe from the event so it gets removed on unmount
-    //     return unsubscribe;
-    //   }, [navigation]);
-
-
-
-
-    
+   
     //Usado para obtner el texto que escriba el usuario en DestinationBar
     const [texto, setTexto] = useState("");
 

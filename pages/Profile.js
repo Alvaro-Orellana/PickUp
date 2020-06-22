@@ -6,7 +6,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 import CustomButton from '../components/CustomButton';
 import ProfileImage from "../components/ProfileImage"
-import {singOutOfFireBase} from "../services/UserService"
+import UserService from "../services/UserService"
 import EditableInfo from '../components/EditableInfo';
 
 
@@ -39,7 +39,7 @@ function Profile({ navigation }){
     }  
 
     function singOut() {
-        singOutOfFireBase()
+        UserService.singOut()
         navigation.navigate("loginFlow")
     }
 

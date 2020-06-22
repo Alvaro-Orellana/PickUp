@@ -1,5 +1,8 @@
 //Hace un POST con los datos del Pasajero y devuelve los datos
 //del conductor si resulta exitosa
+
+
+
 export async function searchDriver(datosPasajero)  {
     try {
 
@@ -11,8 +14,6 @@ export async function searchDriver(datosPasajero)  {
         },
         body: JSON.stringify(datosPasajero)
       }
-
-
       //                            Direccion IP local
       let respuesta = await fetch('http://192.168.0.141:3000/api/reserva', options) 
       let datosConductor = await respuesta.json();

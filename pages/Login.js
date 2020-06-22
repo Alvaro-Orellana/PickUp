@@ -3,7 +3,7 @@ import { AppLoading } from "expo";
 import * as Font from "expo-font";
 import {StyleSheet, View, Text, TouchableOpacity, TextInput} from "react-native";
 import CustomButton from "../components/CustomButton";
-import {signInWithFirebase} from "../services/UserService"
+import UserService  from "../services/UserService"
 
 
 function Login({ navigation }) {
@@ -24,13 +24,14 @@ function Login({ navigation }) {
   });
 
 
-  async function signIn() {
+  const signIn = async () => {
     try{
-        //Guardo firebaseUser por si despues necesitamos pasarlo a otra pantalla
-        const firebaseUser = await signInWithFirebase(mail, password)        
-        navigation.navigate("mainFlow")
+        console.log("SIGN IN PRESSED")
+        const user = await UserService.singIn(mail, password)        
+        // navigation.navigate("mainFlow")
 
     } catch(error) {
+      console.log(error)
         alert(error)
     }
   }

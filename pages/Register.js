@@ -3,7 +3,7 @@ import { AppLoading } from "expo";
 import * as Font from "expo-font";
 import { StyleSheet, View, Text, TouchableOpacity , TextInput} from "react-native";
 import CustomButton from "../components/CustomButton";
-import {registerWithFirebase} from "../services/UserService"
+import UserService from "../services/UserService"
 
 
 function Register({ navigation }) {
@@ -26,8 +26,8 @@ function Register({ navigation }) {
 
   async function register() {
     try{
-        //Guardo firebaseUser por si despues necesitamos pasarlo a otra pantalla
-        const firebaseUser = await registerWithFirebase(mail, password)        
+       
+        const user = await UserService.register(mail, password)        
         navigation.navigate("RegisterData")
 
     } catch(error) {

@@ -20,7 +20,6 @@ function RegisterData({ navigation }) {
   const [licensePlate, onChangeLicensePlate] = useState("");
 
 
-  //Guarda los datos escritos por el usuario a Firebase
   async function saveUserData() {
     try{
         if(userType == "Pasajero") {
@@ -52,8 +51,6 @@ function RegisterData({ navigation }) {
         }
         
         navigation.navigate("mainFlow")
-        // const firebaseUser = await registerWithFirebase(mail, password)        
-        // navigation.navigate("BottomNavigator")
 
     } catch(error) {
         alert(error)
