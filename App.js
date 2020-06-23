@@ -4,18 +4,6 @@ import { createStackNavigator } from 'react-navigation-stack'
 import { createBottomTabNavigator} from "react-navigation-tabs"
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-//-------------------------------------------
-//Necesrio por un bug que existe en la version de firebase
-import {decode, encode} from 'base-64'
-
-if (!global.btoa) {  global.btoa = encode }
-
-if (!global.atob) { global.atob = decode }
-//-----------------------------------------
-
-
-
-
 
 
 // Todas las paginas que muestra la app
@@ -72,12 +60,12 @@ const BottomTabNavigatorConfig = {
 //ingreso con su cuenta lo llevara directamente Home
 const switchNavigator = createSwitchNavigator({
   
-  loginFlow: createStackNavigator({
-    Welcome: WelcomePage,
-    Register: RegisterPage,
-    RegisterData: RegisterDataPage,
-    Login: LoginPage
-  }),
+  // loginFlow: createStackNavigator({
+  //   Welcome: WelcomePage,
+  //   Register: RegisterPage,
+  //   RegisterData: RegisterDataPage,
+  //   Login: LoginPage
+  // }),
 
   mainFlow: createBottomTabNavigator({
     

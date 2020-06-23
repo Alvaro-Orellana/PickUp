@@ -10,6 +10,8 @@ function Register({ navigation }) {
   
   const [mail, onChangeMail] = useState("");
   const [password, onChangePassword] = useState("");
+  const [confirmPassword, onChangeComfirmPassword] = useState("");
+
   const [fontsAreLoaded, setFontAreLoaded] = useState(false);
 
 
@@ -27,6 +29,14 @@ function Register({ navigation }) {
   async function register() {
     try{
        
+        if(password !== confirmPassword) {
+          alert("Las contraseñas no son iguales")
+          
+          //Reseteo lo que escribio el usuario
+          onChangePassword("")
+          onChangeComfirmPassword("")
+          return
+        }
         const user = await UserService.register(mail, password)        
         navigation.navigate("RegisterData")
 
@@ -64,6 +74,16 @@ function Register({ navigation }) {
           value={password}
         />
 
+        <TextInput
+          placeholder="Confirmar Contraseña"
+          placeholderTextColor="gray"
+          secureTextEntry
+          autoCapitalize="none"
+          style={styles.mailInputPassword}
+          onChangeText={(text) => onChangeComfirmPassword(text)}
+          value={confirmPassword}
+        />
+
         <CustomButton 
             style={styles.buttonRegister}
             onPress={register}
@@ -89,7 +109,7 @@ function Register({ navigation }) {
             Ya te registraste?
           </Text>
 
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("Login")}>
             <Text
               style={{
                 textDecorationLine: "underline",

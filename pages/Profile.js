@@ -33,9 +33,9 @@ function Profile({ navigation }){
 
 
     function saveData () {  
-        console.log("savng data...");
-        console.log("the state is ", name, lastName, age, description);
-        //const texto = getUserData()
+        console.log("saving data...");
+        console.log("the new state is ", name, lastName, age, description);
+        //TODO: Desarrollar funcion para guardar cambios de datos 
     }  
 
     function singOut() {
@@ -58,7 +58,7 @@ function Profile({ navigation }){
 
                     <Text style={styles.infoText}> Informacion</Text>
 
-                    <EditableInfo onChangeText={onChangeName} value={name} placeholder="Nombre y Apellido" saveData={saveData}/>
+                    <EditableInfo onChangeText={() => { onChangeName, console.log("se llamo a onchangename")}} value={name} placeholder="Nombre y Apellido" saveData={saveData}/>
 
                     <EditableInfo onChangeText={onChangeLastName} value={lastName} placeholder="Email" saveData={saveData}/>
 

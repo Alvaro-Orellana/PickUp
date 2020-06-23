@@ -95,7 +95,7 @@ function Login({ navigation }) {
             Todavia no te has registrado?
           </Text>
 
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("Register")}>
             <Text
               style={{
                 textDecorationLine: "underline",

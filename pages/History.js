@@ -1,11 +1,66 @@
 
 import React, { useEffect, useState } from 'react'
-import { View, Text, FlatList, ActivityIndicator, StyleSheet } from "react-native";
+import { View, Text, FlatList, ActivityIndicator, StyleSheet, SafeAreaView } from "react-native";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { List, ListItem, SearchBar } from "react-native-elements";
 import CardView from 'react-native-cardview';
 
 function History({ navigation }) {
+
+//     const [data, setData] = useState([])
+//     const [isLoading, setIsLoading] = useState(true)
+
+
+//     useEffect(() => {
+//        getHistorialData()
+//       });
+
+
+//     async function getHistorialData() {
+//         const response = await fetch("https://jsonplaceholder.typicode.com/users")
+//         const json = await response.json()
+//         setData(json)
+//         setIsLoading(false)
+//         console.log("GOT DATA");
+        
+//     }
+
+
+
+//     if(isLoading) {
+//         return (
+//             <View style={styles.container}>
+//                 <ActivityIndicator size="large" animating />
+//             </View>
+//         )
+//     } else {
+//         return (
+//         <SafeAreaView style={styles.container}>
+//             <FlatList
+//                 data={data}
+//                 renderItem={ ({item}) => {
+                    
+//                     <Text>{item.title}</Text>
+//                 }}
+//                 keyExtractor={(item, index) => index}
+
+//             />
+//     </SafeAreaView>
+//         )
+//     }
+    
+// }
+
+
+
+// const styles = StyleSheet.create({
+//     container: {
+//         flex: 1,
+//         justifyContent: "center",
+//         alignItems: "center"
+
+//     }
+// })
 
     let i = 0
     const [loading, setLoading] = useState(false);
