@@ -39,6 +39,8 @@ function Home({ navigation }) {
                 longitud: -58.39,
             }
         }
+        console.log("El usuario apreto enter y los datos son", datosAEnviar);
+        
         setDatosCliente(datosAEnviar)
         setDestinationIsWrittten(true)
     }
