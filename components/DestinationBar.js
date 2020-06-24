@@ -1,46 +1,49 @@
-import React, {useState, Component} from "react";
-import { StyleSheet, View ,TextInput, Text, Dimensions} from "react-native";
+import React, {Component} from "react";
+import { StyleSheet, View ,TextInput, Text, Dimensions, TouchableHighlight} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { GOOGLE_PLACES_API_KEY } from "../constants/api-helper";
 import lodash from "lodash"
 
 const WIDTH = Dimensions.get("window").width;
 
-//no subir a esta key a github
-const GOOGLE_PLACES_API_KEY = "AIzaSyDt27gaF6Taw7YIgHtAxpYIFzfHPYx2kVQ"
+//Por ahora estan hardcodeadas, hay que pasar las de verdad desde Home
 const latitude = -34.6211276
 const longitude = -58.4309524
 
 
-
-//const DestinationBar = ({ texto, onTextChange, onTextSubmit}) => {
 class DestinationBar extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
-           destination: "",
-            googlePredictions: []
+            googlePredictions: [],
+            destinationId: ""
         }
-        this.onChangeDestinationDebounced = lodash.debounce(this.fetchGooglePredictions, 1000)
+        //Retraza el llamado de la funcion por 1 segundo, asi no se llama a la api cada 
+        //vez que se ingresa una letra, sino cuando se deja de escribir
+        this.handleChangeText = lodash.debounce(this.fetchGooglePredictions, 1000)
     }
 
 
     async fetchGooglePredictions(destination) {
-        console.log("-------------- SE LLAMO A LA API y el texto pasado es", destination)
-        //onTextChange(destination)
-        const googlePLacesAPI = `https://maps.googleapis.com/maps/api/place/autocomplete/json?`
-        const parameters = `key=${GOOGLE_PLACES_API_KEY}&input=${destination}&location=${latitude}, ${longitude}&radius=10000&language=es`
-        const finalURL = googlePLacesAPI + parameters
-
-        try {
-            const result = await fetch(finalURL)
-            const json = await result.json()
-            //setGooglePredictions(json.predictions)
-            this.setState({ googlePredictions: json.predictions})
-            console.log(this.state.googlePredictions)
-            
-        } catch(error) {
-            console.log("Error fetching places from google", error)
+    
+        //Este if hace que si el usuario borra todo lo que escribio no haga una llamda 
+        //innecesaria a la api con un texto vacio
+        if(destination) {
+            const googlePLacesAPI = `https://maps.googleapis.com/maps/api/place/autocomplete/json?`
+            const parameters = `key=${GOOGLE_PLACES_API_KEY}&input=${destination}&location=${latitude}, ${longitude}&radius=10000&language=es`
+            const finalURL = googlePLacesAPI + parameters
+    
+            try {
+                const result = await fetch(finalURL)
+                //Array con todas las sugerencias de google en base al lugar que escribe el usuario
+                const json = await result.json()
+                this.setState({ googlePredictions: json.predictions})
+                console.log(json.predictions);
+                
+            } catch(error) {
+                console.log("Error fetching places from google", error)
+            }
         }
     }
     
@@ -62,14 +65,10 @@ class DestinationBar extends Component {
                         value={this.props.texto}
                         onChangeText={destination => {            
 
-                            //this.setState({destination})
-
-
                             this.props.onTextChange(destination)
-                            this.onChangeDestinationDebounced(destination)
+                            this.handleChangeText(destination)
                         }}                 
-                        //onEndEditing={ (destination) =>  this.props.onTextSubmit(destination)}
-                        onEndEditing={this.props.onTextSubmit}
+                        //onEndEditing={this.props.onTextSubmit}
                     >
                     </TextInput>
                     
@@ -87,14 +86,18 @@ class DestinationBar extends Component {
 
                 {this.state.googlePredictions.map(prediction =>
                     
-                    <View style={styles.predictionsStyle} key={prediction.id}>
+                  <TouchableHighlight 
+                    key={prediction.id}
+                    onPress={ () => this.props.onTextSubmit(prediction.place_id)}
+                  >
+                    <View style={styles.predictionsStyle}>
                         <Text 
-
                             style={{padding: 6, marginLeft: 15, fontSize: 17, color: "white"}}
                         >
                             {prediction.description}
                         </Text>
-                     </View>
+                    </View>
+                  </TouchableHighlight>
                 )}
 
             </View>

@@ -5,6 +5,7 @@ import { View, StyleSheet, Dimensions} from 'react-native';
 import MapComponent from '../components/MapComponent'
 import DestinationBar from "../components/DestinationBar"
 import BuscarConductorButton from "../components/BuscarConductorButton"
+import CancelDestinationButton from "../components/CancelDestinationButton"
 
 
 
@@ -17,14 +18,17 @@ function Home({ navigation }) {
     //para hacer llamada a Backend
     const [datosCliente, setDatosCliente] = useState({});
 
-    const [destinationIsWritten, setDestinationIsWrittten] = useState(false)
+
+    //Usado para marcar la ruta en el mapa, es un string codificado
+    //que representa la direccion que elegio el usuario
+    const [destinationId, setDestinationId] = useState("")
+
 
     //Se activa cuado el usuario presiona enter en el teclado.
     //Guarda el texto que habia en el text input y arma un objeto 
     //con todos los datos del del usuario
-    const guardarDireccionEscrita = () => {
-        
-        
+    const guardarDireccionEscrita = (placeId) => {
+         
         const datosAEnviar = {
             usuario : {
                 nombre: "Nombre Usuario",
@@ -40,24 +44,39 @@ function Home({ navigation }) {
             }
         }
         console.log("El usuario apreto enter y los datos son", datosAEnviar);
-        
         setDatosCliente(datosAEnviar)
-        setDestinationIsWrittten(true)
+
+        //Usada para genetar la ruta en el mapa
+        setDestinationId(placeId)
+
+       
+       
+       
+       
+       
+        //Usada para mostrar distintos componentes dependiendo si
+        //el usuario escrbio su direccion
+        //setDestinationIsWrittten(true)
     }
 
-    if(destinationIsWritten){
+
+
+    if(destinationId){
         return(
             <View style={styles.container}>
-                <DestinationBar 
-                    texto={texto}
-                    onTextChange={nuevoTexto => setTexto(nuevoTexto)}
-                    onTextSubmit={guardarDireccionEscrita}
-                />
             
-                <BuscarConductorButton 
+                <BuscarConductorButton top={40}
                     datosCliente={datosCliente}
-                />              
-                <MapComponent />
+                /> 
+              
+                <CancelDestinationButton top={120}
+                    action={ () => {
+                        setDestinationId("")
+                        setTexto("")
+                    }}
+                /> 
+                   
+                <MapComponent destinationId={destinationId}/>
 
             </View>
         )

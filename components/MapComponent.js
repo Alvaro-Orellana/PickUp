@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import {StyleSheet, Dimensions} from "react-native";
-
 import MapView from "react-native-maps";
+import MapViewDirections from "react-native-maps-directions"
+
 import {CurrentLocationButton} from "./CurrentLocationButton"
 import Conductor from "./Conductor"
+import { GOOGLE_PLACES_API_KEY } from "../constants/api-helper";
 
 
 export default class MapComponent extends Component {
@@ -96,7 +98,33 @@ export default class MapComponent extends Component {
     }
 
     render(){
-        return(
+        if(this.props.destinationId) {
+            
+            return(
+                < MapView
+                    initialRegion={this.state.position}
+                    ref={map => this.mapa = map}
+                    region={this.state.position}
+                    showsUserLocation={true}
+                    showsCompass={true}
+                    rotateEnabled={true}
+                    style={styles.mapStyle}
+                >    
+                    <MapViewDirections
+                        origin={this.state.position}
+                        destination={"place_id:" + this.props.destinationId}
+                        apikey={GOOGLE_PLACES_API_KEY}
+                        strokeWidth={5}
+                        strokeColor="#7D57FE"
+                    />
+                    <CurrentLocationButton  callBack={ () => this.centrarMapa()}/>
+
+                </MapView>
+
+            )
+        } else {
+            
+            return(
                 < MapView
                     initialRegion={this.state.position}
                     ref={map => this.mapa = map}
@@ -111,7 +139,8 @@ export default class MapComponent extends Component {
                     <Conductor conductor={{position: { latitude: -34.60, longitude: -58.39}}}/>
                 </MapView>
 
-        )
+             )
+        }
     }
 
      //Conductor tiene hardcodeado las coordenadas iniciales es ahi donde despues al recibir las coordenadas
