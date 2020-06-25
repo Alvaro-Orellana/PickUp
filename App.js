@@ -20,11 +20,9 @@ import DriverFoundPage from "./pages/DriverFound"
 
 
 
-
 const BottomTabNavigatorConfig = {
   defaultNavigationOptions : ({navigation}) => {
     return {
-
       tabBarOptions: {
         activeTintColor: "white",
         inactiveTintColor: "#C7C7CC",
@@ -39,7 +37,7 @@ const BottomTabNavigatorConfig = {
         if(routeName == "Home") {
           currentIcon = "magnify"
 
-        } else if (routeName == "History") {
+        } else if (routeName == "Viajes") {
           currentIcon = "clipboard-text"
         
         } else {
@@ -67,20 +65,20 @@ const switchNavigator = createSwitchNavigator({
   //   Login: LoginPage
   // }),
 
+
   mainFlow: createBottomTabNavigator({
     
     Home: createStackNavigator({
       Home: HomePage,
       Loader: LoaderPage,
       DriverFound: DriverFoundPage
-      
     }),
 
-    History: createStackNavigator({
+    Viajes: createStackNavigator({
       History: HistoryPage
     }),
 
-    Profile: createStackNavigator({
+    Perfil: createStackNavigator({
       Profile: ProfilePage,
     })
 
@@ -92,45 +90,4 @@ const switchNavigator = createSwitchNavigator({
 export default createAppContainer(switchNavigator)
 
 
-
-
-
-
-
-// const Stack = createStackNavigator()
-
-// export default function App() {
-
-
-//   return (
-//     <NavigationContainer>
-//        <Stack.Navigator>
-       
-//         <Stack.Screen
-//           name="Home"
-//           component={Welcome}
-//           options={{ title: 'Welcome', headerShown: false}}
-//         />
-
-//         <Stack.Screen
-//           name="Login" 
-//           component={Login} 
-//           options={{title:'', headerBackTitleVisible:false, headerTintColor:'#fff', headerStyle: {backgroundColor : '#7D57FE'}}} />
-
-//         <Stack.Screen 
-//           name="Register" 
-//           component={Register}
-//           options={{title:'', headerBackTitleVisible:false, headerTintColor:'#fff', headerStyle: {backgroundColor : '#7D57FE'}}}/>   
-
-//         <Stack.Screen 
-//           name="BottomNavigator" 
-//           component={BottomNavigator}
-//           options={{title:'Home', headerLeft:null, headerBackTitleVisible:false, headerTintColor:'#fff', headerStyle: {backgroundColor : '#7D57FE'}}}/>
-     
-//       </Stack.Navigator>
-//     </NavigationContainer>
-  
-
-//   );
-// }
 

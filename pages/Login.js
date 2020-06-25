@@ -28,7 +28,9 @@ function Login({ navigation }) {
     try{
         console.log("SIGN IN PRESSED")
         const user = await UserService.singIn(mail, password)        
-        // navigation.navigate("mainFlow")
+        if(user) {
+          navigation.navigate("mainFlow")
+        }
 
     } catch(error) {
       console.log(error)
@@ -112,6 +114,15 @@ function Login({ navigation }) {
     );
   }
 }
+
+
+Login.navigationOptions = () => {
+  return {
+      headerShown: false,      
+  }
+}
+
+
 
 const styles = StyleSheet.create({
   container: {

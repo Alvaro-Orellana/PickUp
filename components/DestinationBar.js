@@ -19,9 +19,9 @@ class DestinationBar extends Component {
             googlePredictions: [],
             destinationId: ""
         }
-        //Retraza el llamado de la funcion por 1 segundo, asi no se llama a la api cada 
+        //Retraza el llamado de la funcion por 1.5 segundos, asi no se llama a la api cada 
         //vez que se ingresa una letra, sino cuando se deja de escribir
-        this.handleChangeText = lodash.debounce(this.fetchGooglePredictions, 1000)
+        this.handleChangeText = lodash.debounce(this.fetchGooglePredictions, 1500)
     }
 
 
@@ -39,7 +39,7 @@ class DestinationBar extends Component {
                 //Array con todas las sugerencias de google en base al lugar que escribe el usuario
                 const json = await result.json()
                 this.setState({ googlePredictions: json.predictions})
-                console.log(json.predictions);
+                console.log("Se llamo a la API de google places--------------------------------");
                 
             } catch(error) {
                 console.log("Error fetching places from google", error)
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
         position: "absolute",
         width: (WIDTH-40),
         height: 60,
-        top: 35,
+        top: 40,
         left: 20,
         borderRadius:15,
         backgroundColor: "#7D57FE",

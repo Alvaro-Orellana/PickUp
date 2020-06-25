@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {StyleSheet, Dimensions} from "react-native";
-import MapView from "react-native-maps";
+import MapView, { Marker } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions"
 
 import {CurrentLocationButton} from "./CurrentLocationButton"
@@ -24,12 +24,13 @@ export default class MapComponent extends Component {
             },
             mapa: null,
             watchID : null,
+            routeCoordinates: []
         }
     }
 
 
-    componentDidMount() {        
-       this.obtenerLocalizacion()    
+    async componentDidMount() {        
+       await this.obtenerLocalizacion()    
     }
 
     //Obtiene y setea la posicion actual
@@ -46,7 +47,7 @@ export default class MapComponent extends Component {
         // }
         
         //Devuelve un objeto con la latitud y longitud
-        navigator.geolocation.getCurrentPosition(position => {
+         navigator.geolocation.getCurrentPosition(position => {
 
             var latitud = parseFloat(position.coords.latitude);
             var longitud = parseFloat(position.coords.longitude);
@@ -98,11 +99,13 @@ export default class MapComponent extends Component {
     }
 
     render(){
+        //Si el usuario elegio una direccion de las sugerencias de google
+        // se muestra la ruta marcada en el mapa
         if(this.props.destinationId) {
             
             return(
                 < MapView
-                    initialRegion={this.state.position}
+                    //initialRegion={this.state.position}
                     ref={map => this.mapa = map}
                     region={this.state.position}
                     showsUserLocation={true}
@@ -116,7 +119,21 @@ export default class MapComponent extends Component {
                         apikey={GOOGLE_PLACES_API_KEY}
                         strokeWidth={5}
                         strokeColor="#7D57FE"
+                        onStart={(params) => {
+                            console.log(`Started routing between "${params.origin}" and "${params.destination}"`)
+                            console.log(params);
+                            
+                        }}
+                        onReady={result => {
+                            this.setState({routeCoordinates: result.coordinates})                            
+                            console.log(`Distance: ${result.distance} km`)
+                            console.log(`Duration: ${result.duration} min.`)
+              
+                            this.mapa.fitToCoordinates(result.coordinates);
+                          }}
                     />
+
+                    <Marker coordinate={this.state.routeCoordinates[this.state.routeCoordinates.length-1]}/>
                     <CurrentLocationButton  callBack={ () => this.centrarMapa()}/>
 
                 </MapView>
@@ -130,7 +147,7 @@ export default class MapComponent extends Component {
                     ref={map => this.mapa = map}
                     region={this.state.position}
                     showsUserLocation={true}
-                    showsCompass={true}
+                    showsCompass={false}
                     rotateEnabled={true}
                     style={styles.mapStyle}
                 >    

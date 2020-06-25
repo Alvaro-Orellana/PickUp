@@ -18,13 +18,13 @@ export default class UserService {
     const response =  await fetch(`${API_URL}/public/auth/login`, requestOptions);
     console.log(response);
     if(response.code == 200){
-        const { data } = response;
-        StoreService.SaveData("access_token", data.access_token);
-        StoreService.SaveData("user", data.user);
-        return data.user;
+      console.log("Success singing in");
+      const { data } = response;
+      StoreService.SaveData("access_token", data.access_token);
+      StoreService.SaveData("user", data.user);
+      return data.user;
     }
 
-    console.log("Success singing in");
     return null;
 
   } catch (error) {
@@ -45,13 +45,13 @@ static async  register(user) {
         const response =  await fetch(`${API_URL}/public/register`, requestOptions);
     
         if(response.code == 200){
+            console.log("Success registering");
             const { data } = response;
             StoreService.SaveData("access_token", data.access_token);
             StoreService.SaveData("user", data.user);
             return data.user;
         }
     
-        console.log("Success registering");
         return null;
     
       } catch (error) {

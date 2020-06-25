@@ -83,7 +83,8 @@ const Loader = ({navigation}) => {
 
 Loader.navigationOptions = () => {
   return {
-      headerShown: false
+      headerShown: false,
+      tabBarVisible: false   
   }
 }
 

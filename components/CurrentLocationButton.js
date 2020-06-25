@@ -21,7 +21,7 @@ export const CurrentLocationButton = (props) => {
                 color={"#000000"}
                 size={25}
                 onPress={ () => {callBack()}}
-           
+                containerStyle
             />
         </View>
     )

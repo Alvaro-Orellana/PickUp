@@ -48,28 +48,20 @@ function Home({ navigation }) {
 
         //Usada para genetar la ruta en el mapa
         setDestinationId(placeId)
-
-       
-       
-       
-       
-       
-        //Usada para mostrar distintos componentes dependiendo si
-        //el usuario escrbio su direccion
-        //setDestinationIsWrittten(true)
     }
 
 
-
+    //Si el usuaario selecciono una direccion, mostrar la ruta, junto a botones
+    //para aceptar o cancelar el viaje
     if(destinationId){
         return(
             <View style={styles.container}>
             
-                <BuscarConductorButton top={40}
+                <BuscarConductorButton top={55}
                     datosCliente={datosCliente}
                 /> 
               
-                <CancelDestinationButton top={120}
+                <CancelDestinationButton top={135}
                     action={ () => {
                         setDestinationId("")
                         setTexto("")
@@ -100,9 +92,10 @@ function Home({ navigation }) {
 
 Home.navigationOptions = () => {
     return {
-        headerShown: false      
+        headerShown: false,
     }
 }
+
 
 
 const styles = StyleSheet.create({

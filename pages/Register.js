@@ -38,7 +38,11 @@ function Register({ navigation }) {
           return
         }
         const user = await UserService.register(mail, password)        
-        navigation.navigate("RegisterData")
+        if(user){
+          navigation.navigate("RegisterData")
+        } else{
+          alert("Error registrando usuario. Intente de nuevo")
+        }
 
     } catch(error) {
         alert(error)
@@ -126,6 +130,13 @@ function Register({ navigation }) {
     );
   }
 }
+
+Register.navigationOptions = () => {
+  return {
+      headerShown: false,      
+  }
+}
+
 
 const styles = StyleSheet.create({
   container: {

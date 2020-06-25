@@ -2,11 +2,33 @@ import React from "react";
 import {View, Image, StyleSheet} from "react-native";
 import { Ionicons } from '@expo/vector-icons'; 
 
-const ProfileImage = ({imagen, tamaño}) => {
+const ProfileImage = ({imagen, tamaño, imageURL}) => {
+
+   //Esto es nuevo, hay que modificarlo para que funcione con imagenes dinamicas
+    if(imageURL){
+        return(
+            <View 
+            style={{ width: tamaño,
+                    height: tamaño,
+                    borderRadius: 200,
+                    overflow: "hidden",
+                    borderWidth: 4,
+                    borderColor: "#4CD964"
+                    }}
+            >
+                <Image 
+                    //Aca en vez de require, averiguar como mostrar una imagen
+                    //pasada por json
+                    source={{uri: imageURL}}  
+                    style={{width: tamaño, height: tamaño, borderRadius: 200}} 
+                />
+            </View>
+        )
+
 
     //Si el props imagen existe muestra esa imagen, sino muestra
     //una por default
-    if(imagen){
+    } else if(imagen){
         return(
             <View 
             style={{ width: tamaño,
@@ -25,7 +47,7 @@ const ProfileImage = ({imagen, tamaño}) => {
                 />
             </View>
         )
-    } else {
+    }  else {
        return (     
             <View style={styles.container}>
                 <Ionicons name="ios-person" size={tamaño} color="white" borderRadius={50}/>

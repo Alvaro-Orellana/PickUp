@@ -23,14 +23,14 @@ const EditableInfo = ({onChangeText, value, placeholder, saveData}) => {
        <View style={styles.container} >
             <View style={styles.container2}>
                
-                <Text style={styles.subtitleText}>{placeholder} :                                                       </Text>
+                <Text style={styles.subtitleText}>{placeholder} :</Text>
 
 
                 <Text  
                     onPress={handlePress}  
                     style={styles.editStyle}
                 >
-                    {textInputAllowsEditing ?  "Save": "Edit"}
+                    {textInputAllowsEditing ?  "Guardar": "Editar"}
                 </Text>  
 
             </View>
@@ -50,35 +50,36 @@ const EditableInfo = ({onChangeText, value, placeholder, saveData}) => {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        alignItems: "center",
-    
+        flex: 1
+        
       },
     container2: {
+        justifyContent: "space-between",
         flexDirection: "row",
         paddingTop: 40,
-        paddingHorizontal: 50
+       
     },
     subtitleText: {
         color: "gray",
         fontSize: 16,
         fontWeight: '200',
     },
+    editStyle:{
+        color: "#3CB9F9",
+        fontSize: 20,
+        fontWeight: '500',
+    },
     inputText: {
         height: 50,
         fontSize: 18,
-        width: "85%",
+        width: "100%",
         color: "black",
         paddingLeft: 7,
-        borderBottomColor:'black',
+        borderBottomColor:'#3CB9F9',
         borderBottomWidth: 1  ,
         marginTop: 0
       },
-    editStyle:{
-        color: "#3CB9F9",
-        fontSize: 17,
-        fontWeight: '500',
-    }
+
 })
 
 
