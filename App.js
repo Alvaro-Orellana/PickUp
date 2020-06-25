@@ -57,7 +57,7 @@ const BottomTabNavigatorConfig = {
 //que alguien ingresa, lo llevara a Welcome, Login o Register. Pero si ya
 //ingreso con su cuenta lo llevara directamente Home
 const switchNavigator = createSwitchNavigator({
-  
+
   // loginFlow: createStackNavigator({
   //   Welcome: WelcomePage,
   //   Register: RegisterPage,

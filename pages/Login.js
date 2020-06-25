@@ -34,11 +34,12 @@ function Login({ navigation }) {
 
     } catch(error) {
       console.log(error)
-        alert(error)
+      alert(error)
     }
   }
 
 
+  
   if (!fontsAreLoaded) {
     return <AppLoading />;
 
@@ -130,7 +131,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#7D57FE",
     flexDirection: "column",
-    paddingTop: "10%",
+    paddingTop: "20%",
   },
   titleText: {
     fontFamily: "SF_Pro_Text",

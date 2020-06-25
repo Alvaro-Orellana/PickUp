@@ -15,8 +15,12 @@ export default class UserService {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
     }
+
     const response =  await fetch(`${API_URL}/public/auth/login`, requestOptions);
-    console.log(response);
+    //Si logea una respuesta 
+    console.log(JSON.stringify(response));
+
+    //Pero este if no esta pasando
     if(response.code == 200){
       console.log("Success singing in");
       const { data } = response;

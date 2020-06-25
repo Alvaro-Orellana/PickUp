@@ -29,10 +29,10 @@ class History extends Component {
 
 
     async  getHistorialData() {
-
+        console.log("se llamo al servidor");
+        
         //url servidor falso en github
         const url = "https://my-json-server.typicode.com/Alvaro-Orellana/json_Fake_server/posts"
-        const secondUrl = ""
 
         const response = await fetch(url)
         const json = await response.json()        
@@ -61,9 +61,10 @@ class History extends Component {
                                     <ProfileImage 
                                         imageURL={item.imageURL} 
                                         tamaño={65}
+                                        borderColor="#4CD964" borderWidth={2}
                                     />
 
-                                    <View style={{flex: 1, justifyContent: "center", marginLeft: 5}}>
+                                    <View style={{marginLeft: 10,}}>
                                         <Text style={styles.textStyle}>{item.userName} {item.userLastName}</Text>
                                         <Text >{item.date}</Text>   
 
@@ -106,14 +107,13 @@ const styles = StyleSheet.create({
         borderRadius:20,
         backgroundColor: "white",
         alignItems: "center",
-        shadowRadius: 3,
-        shadowOpacity: 1.0,
-        borderWidth: 2,
-        borderColor: "red"
+        borderWidth: 1.5,
+        borderColor: "#3CB9F9"
     },
     textStyle: {
         fontSize: 16,
         fontWeight: "bold",
+        paddingBottom: 7,
         
     },
 })

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {StyleSheet, Dimensions} from "react-native";
+import {View, StyleSheet, Dimensions, Text} from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions"
 
@@ -23,8 +23,14 @@ export default class MapComponent extends Component {
             
             },
             mapa: null,
-            watchID : null,
-            routeCoordinates: []
+            //watchID : null,
+            routeCoordinates: [],
+            distanciaRuta: 0,
+            duracionRuta: 0,
+            //Este tarifa es la mitad de la tarifa que cobran los taxis en BA
+            tarifaPorKm: 8.15,
+            precioViaje: 0,
+
         }
     }
 
@@ -126,12 +132,24 @@ export default class MapComponent extends Component {
                         }}
                         onReady={result => {
                             this.setState({routeCoordinates: result.coordinates})                            
-                            console.log(`Distance: ${result.distance} km`)
-                            console.log(`Duration: ${result.duration} min.`)
+                           
+                            var distance = result.distance.toFixed(1)
+                            var duration = result.duration.toFixed(1)
+                            var price = (distance * this.state.tarifaPorKm).toFixed(1)
+
+                            this.setState({distanciaRuta: distance})
+                            this.setState({duracionRuta: duration})
+                            this.setState({precioViaje: price})
               
                             this.mapa.fitToCoordinates(result.coordinates);
                           }}
                     />
+                   
+                   <View style={styles.rideInfo}>
+                        <Text>Distancia: {this.state.distanciaRuta} Km</Text>
+                        <Text>Tiempo Estimado: {this.state.duracionRuta} min</Text>
+                        <Text>Precio: {this.state.precioViaje} $</Text> 
+                   </View>
 
                     <Marker coordinate={this.state.routeCoordinates[this.state.routeCoordinates.length-1]}/>
                     <CurrentLocationButton  callBack={ () => this.centrarMapa()}/>
@@ -172,6 +190,15 @@ const styles = StyleSheet.create({
       width: Dimensions.get('window').width,
       height: Dimensions.get('window').height,
     },
+    rideInfo: {
+        marginLeft: 30,
+        marginVertical: 50,
+        padding: 20,
+        borderColor: "black",
+        borderWidth: 1,
+        position: "relative"
+
+    }
   });
 
 

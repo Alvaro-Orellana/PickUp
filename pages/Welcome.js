@@ -47,13 +47,18 @@ const styles = StyleSheet.create({
         height: '100%',
         flex: 1
     },
-    bottomView: { flexDirection: 'row', flex: 2, position:'absolute', bottom: 0, marginBottom: 50},
+    bottomView: { 
+        flexDirection: 'row', 
+        position:'absolute',
+        bottom: 0, 
+        marginBottom: 50,
+    },
     buttonLogin: {
         marginTop: 10,
         width: '100%',
         paddingTop: 10,
-        marginLeft: 15,
-        marginRight: '25%',
+        marginLeft: 25,
+        marginRight: '23%',
         backgroundColor: '#3CB9F9',
     },
      buttonRegister: {

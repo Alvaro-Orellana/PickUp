@@ -54,8 +54,8 @@ function Profile({ navigation }){
                 showsVerticalScrollIndicator={false}
            >
 
-                    <View style={     {   alignItems: "center"}}>
-                    <ProfileImage tamaño={130} imagen={true}  />
+                    <View style={{alignItems: "center"}}>
+                    <ProfileImage tamaño={130} borderColor="#4CD964" borderWidth={4} imagen={true}  />
                     </View>
 
                     <Text style={styles.infoText}>Informacion Usuario</Text>

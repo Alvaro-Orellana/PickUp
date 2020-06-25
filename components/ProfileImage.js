@@ -2,7 +2,7 @@ import React from "react";
 import {View, Image, StyleSheet} from "react-native";
 import { Ionicons } from '@expo/vector-icons'; 
 
-const ProfileImage = ({imagen, tamaño, imageURL}) => {
+const ProfileImage = ({imagen, tamaño, imageURL, borderColor, borderWidth}) => {
 
    //Esto es nuevo, hay que modificarlo para que funcione con imagenes dinamicas
     if(imageURL){
@@ -13,7 +13,8 @@ const ProfileImage = ({imagen, tamaño, imageURL}) => {
                     borderRadius: 200,
                     overflow: "hidden",
                     borderWidth: 4,
-                    borderColor: "#4CD964"
+                    borderWidth: borderWidth,
+                    borderColor: borderColor,
                     }}
             >
                 <Image 
@@ -26,8 +27,8 @@ const ProfileImage = ({imagen, tamaño, imageURL}) => {
         )
 
 
-    //Si el props imagen existe muestra esa imagen, sino muestra
-    //una por default
+    //Muestra una imagen de prueba en un archivo local, mejorar esto
+    //para obtenerla dinamicamente
     } else if(imagen){
         return(
             <View 
@@ -35,8 +36,8 @@ const ProfileImage = ({imagen, tamaño, imageURL}) => {
                     height: tamaño,
                     borderRadius: 200,
                     overflow: "hidden",
-                    borderWidth: 4,
-                    borderColor: "#4CD964"
+                    borderWidth: borderWidth,
+                    borderColor: borderColor
                     }}
             >
                 <Image 
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
         borderRadius: 150 / 2,
         overflow: "hidden",
         borderWidth: 3,
-        borderColor: "red"
+        borderColor: "#4CD964"
       },
 })
 
