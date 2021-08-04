@@ -1,0 +1,207 @@
+import React, { useEffect, useState } from "react";
+import { AppLoading } from "expo";
+import * as Font from "expo-font";
+import { StyleSheet, View, Text, TouchableOpacity , TextInput} from "react-native";
+import CustomButton from "../components/CustomButton";
+import UserService from "../services/UserService"
+
+
+function Register({ navigation }) {
+  
+  const [mail, onChangeMail] = useState("");
+  const [password, onChangePassword] = useState("");
+  const [confirmPassword, onChangeComfirmPassword] = useState("");
+
+  const [fontsAreLoaded, setFontAreLoaded] = useState(false);
+
+
+  useEffect(() => {
+    (async function loader() {
+      await Font.loadAsync({
+        SF_Pro_Text: require("../assets/fonts/SFProText.ttf"),
+      });
+
+      setFontAreLoaded(true);
+    })();
+  });
+
+
+  async function register() {
+    try{
+       
+        if(password !== confirmPassword) {
+          alert("Las contraseñas no son iguales")
+          
+          //Reseteo lo que escribio el usuario
+          onChangePassword("")
+          onChangeComfirmPassword("")
+          return
+        }
+        const user = await UserService.register(mail, password)        
+        if(user){
+          navigation.navigate("RegisterData")
+        } else{
+          alert("Error registrando usuario. Intente de nuevo")
+        }
+
+    } catch(error) {
+        alert(error)
+    }
+  }
+
+
+  if (!fontsAreLoaded) {
+    return <AppLoading />;
+
+  } else {
+    return (
+      <View style={styles.container}>
+
+        <Text style={styles.titleText}>Crear Nueva Cuenta</Text>
+
+        <TextInput
+          placeholder="Mail"
+          placeholderTextColor="gray"
+          autoCapitalize="none"
+          style={styles.mailInputText}
+          onChangeText={(text) => onChangeMail(text)}
+          value={mail}
+        />
+
+        <TextInput
+          placeholder="Contraseña"
+          placeholderTextColor="gray"
+          secureTextEntry
+          autoCapitalize="none"
+          style={styles.mailInputPassword}
+          onChangeText={(text) => onChangePassword(text)}
+          value={password}
+        />
+
+        <TextInput
+          placeholder="Confirmar Contraseña"
+          placeholderTextColor="gray"
+          secureTextEntry
+          autoCapitalize="none"
+          style={styles.mailInputPassword}
+          onChangeText={(text) => onChangeComfirmPassword(text)}
+          value={confirmPassword}
+        />
+
+        <CustomButton 
+            style={styles.buttonRegister}
+            onPress={register}
+        >
+            Crear Cuenta
+        </CustomButton>
+
+        <View style={{ paddingTop: "5%" }}>
+          <Text style={styles.terminos}>
+            Al crear una cuenta estas aceptando nuestros terminos y condiciones
+            de servicio
+          </Text>
+        </View>
+
+        <View style={{ flexDirection: "row", marginTop: 20 }}>
+          <Text
+            style={{
+              color: "#DBDBDB",
+              marginRight: 10,
+              fontFamily: "SF_Pro_Text",
+            }}
+          >
+            Ya te registraste?
+          </Text>
+
+          <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+            <Text
+              style={{
+                textDecorationLine: "underline",
+                color: "#fff",
+                fontFamily: "SF_Pro_Text",
+              }}
+            >
+              Ingresar
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+      </View>
+    );
+  }
+}
+
+Register.navigationOptions = () => {
+  return {
+      headerShown: false,      
+  }
+}
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    backgroundColor: "#7D57FE",
+    flexDirection: "column",
+    paddingTop: "20%",
+  },
+  background: {
+    width: "100%",
+    height: "100%",
+    flex: 1,
+  },
+  terminos: {
+    fontFamily: "SF_Pro_Text",
+    fontSize: 13,
+    textAlign: "center",
+    letterSpacing: -0.08,
+    color: "#FFFFFF",
+  },
+  buttonRegister: {
+    height: 50,
+    width: 330,
+    marginTop: "5%",
+    paddingTop: 15,
+    marginLeft: 15,
+    marginRight: 15,
+    backgroundColor: "#000000",
+    borderRadius: 20,
+    borderWidth: 0,
+    borderColor: "#fff",
+  },
+  buttonText: {
+    color: "#fff",
+    textAlign: "center",
+    fontSize: 16,
+  },
+  mailInputText: {
+    height: 50,
+    borderColor: "gray",
+    borderWidth: 1,
+    backgroundColor: "#433088",
+    width: "90%",
+    marginTop: "10%",
+    color: "#fff",
+    borderRadius: 8,
+    paddingLeft: 15,
+  },
+  mailInputPassword: {
+    height: 50,
+    borderColor: "gray",
+    borderWidth: 1,
+    backgroundColor: "#433088",
+    width: "90%",
+    marginTop: "5%",
+    color: "#fff",
+    borderRadius: 8,
+    paddingLeft: 15,
+  },
+  titleText: {
+    fontFamily: "SF_Pro_Text",
+    color: "#fff",
+    fontSize: 24,
+  },
+});
+
+export default Register;
