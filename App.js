@@ -58,12 +58,12 @@ const BottomTabNavigatorConfig = {
 //ingreso con su cuenta lo llevara directamente Home
 const switchNavigator = createSwitchNavigator({
 
-  // loginFlow: createStackNavigator({
-  //   Welcome: WelcomePage,
-  //   Register: RegisterPage,
-  //   RegisterData: RegisterDataPage,
-  //   Login: LoginPage
-  // }),
+  loginFlow: createStackNavigator({
+    Welcome: WelcomePage,
+    Register: RegisterPage,
+    RegisterData: RegisterDataPage,
+    Login: LoginPage
+  }),
 
 
   mainFlow: createBottomTabNavigator({

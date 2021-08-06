@@ -15,8 +15,8 @@ export default class MapComponent extends Component {
         this.state = {
             position : {
                 //Cordenadas de Buenos Aires
-                latitude:-34.6211276,  
-                longitude: -58.4309524,
+                latitude:-34.60860283754747,  
+                longitude: -58.39069747121322,
                 //Los delta se refieren al zoom que va a hacer el mapa en la pantalla
                 latitudeDelta: 0.17,
                 longitudeDelta: 0.17
@@ -28,7 +28,7 @@ export default class MapComponent extends Component {
             distanciaRuta: 0,
             duracionRuta: 0,
             //Este tarifa es la mitad de la tarifa que cobran los taxis en BA
-            tarifaPorKm: 8.15,
+            tarifaPorKm: 16.50,
             precioViaje: 0,
 
         }
@@ -146,15 +146,16 @@ export default class MapComponent extends Component {
                     />
                    
                    <View style={styles.rideInfo}>
-                        <Text>Distancia: {this.state.distanciaRuta} Km</Text>
-                        <Text>Tiempo Estimado: {this.state.duracionRuta} min</Text>
-                        <Text>Precio: {this.state.precioViaje} $</Text> 
+                        <Text style={styles.rideInfoText}>Distancia: {this.state.distanciaRuta} Km</Text>
+                        <Text style={styles.rideInfoText}>Tiempo Estimado: {this.state.duracionRuta} min</Text>
+                        <Text style={styles.rideInfoText}>Precio: {this.state.precioViaje} $</Text> 
                    </View>
 
                     <Marker coordinate={this.state.routeCoordinates[this.state.routeCoordinates.length-1]}/>
-                    <CurrentLocationButton  callBack={ () => this.centrarMapa()}/>
 
                 </MapView>
+//  Esto iba dentro de mapview pero hay un bug que saca al boton de su lugar  asi que lo saco por ahora     
+//  <CurrentLocationButton  callBack={ () => this.centrarMapa()}/>
 
             )
         } else {
@@ -171,7 +172,6 @@ export default class MapComponent extends Component {
                 >    
                     <CurrentLocationButton  callBack={ () => this.centrarMapa()}/>
 
-                    <Conductor conductor={{position: { latitude: -34.60, longitude: -58.39}}}/>
                 </MapView>
 
              )
@@ -191,14 +191,18 @@ const styles = StyleSheet.create({
       height: Dimensions.get('window').height,
     },
     rideInfo: {
-        marginLeft: 30,
-        marginVertical: 50,
-        padding: 20,
-        borderColor: "black",
-        borderWidth: 1,
-        position: "relative"
-
+        // marginLeft: 20,
+        // marginVertical: 20,
+        // padding: 40,
+        paddingLeft:30,
+        paddingVertical: 60,
+       
+    },
+    rideInfoText: {
+        fontSize: 22,
+        fontWeight: 'bold',
     }
+
   });
 
 
