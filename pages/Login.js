@@ -25,17 +25,20 @@ function Login({ navigation }) {
 
 
   const signIn = async () => {
-    try{
-        console.log("SIGN IN PRESSED")
-        const user = await UserService.singIn(mail, password)        
-        if(user) {
-          navigation.navigate("mainFlow")
-        }
+    navigation.navigate("mainFlow")
+    // llama a la base de datos para verificar usuario pero para testing 
+    // hago que pase directamente a la pagina principal
+    // try{
+    //     console.log("SIGN IN PRESSED")
+    //     const user = await UserService.singIn(mail, password)        
+    //     if(user) {
+    //       navigation.navigate("mainFlow")
+    //     }
 
-    } catch(error) {
-      console.log(error)
-      alert(error)
-    }
+    // } catch(error) {
+    //   console.log(error)
+    //   alert(error)
+    // }
   }
 
 

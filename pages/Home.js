@@ -31,16 +31,16 @@ function Home({ navigation }) {
          
         const datosAEnviar = {
             usuario : {
-                nombre: "Nombre Usuario",
-                apellido: "Apellido Usuario",
-                imagen: "Aca podria enviarse la imagen del usuario"
+                nombre: "Mariano",
+                apellido: "Villarroel",
+                imagen: ""
             }, 
             direccion: texto,
             //Aca tengo que obtener las coordenadas correctas
             //Por ahora van a estar hardcodeadas
             coordenadas: {                 
-                latitud: -34.60,
-                longitud: -58.39,
+                latitud: -34.60860283754747,
+                longitud: -58.39069747121322,
             }
         }
         console.log("El usuario apreto enter y los datos son", datosAEnviar);

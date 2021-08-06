@@ -22,6 +22,7 @@ export const CurrentLocationButton = (props) => {
                 size={25}
                 onPress={ () => {callBack()}}
                 containerStyle
+                
             />
         </View>
     )
@@ -40,6 +41,7 @@ const style = StyleSheet.create({
         shadowRadius: 20,
         shadowOpacity: 1.0,
         justifyContent: `space-around`,
-        alignItems: "center"
+        alignItems: "center",
+        //top: HEIGHT -1000
     }
 })
