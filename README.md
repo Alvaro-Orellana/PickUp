@@ -3,7 +3,7 @@
 Copy of the client-side functionality of apps like uber or cabify
 
 <p align="center">
- <img  src="https://github.com/Alvaro-Orellana/uber/assets/images_for_readme/background_image.png" width="675" height="450">
+ <img  src="https://github.com/Alvaro-Orellana/uber/blob/master/assets/images_for_readme/background_image.png" width="675" height="450">
 </p>
 
 # About
@@ -14,7 +14,7 @@ The app was made using React Native and Firebase and uses APIs from the Google c
 
 
 # Demo
-<img  align="left" src= "https://github.com/Alvaro-Orellana/uber/assets/images_for_readme/app_intro.gif">
+<img  align="left" src= "https://github.com/Alvaro-Orellana/uber/blob/master/assets/images_for_readme/app_intro.gif">
 
 ## &emsp; Features 
 
@@ -43,14 +43,14 @@ The app has 3 main screen: Home, Viajes (my travels), and perfil (profile). <br>
 
 Home Screen             |  Travels screen         | Profile Screen
 :-------------------------:|:-------------------------: |:-------------------------:
-![](https://github.com/Alvaro-Orellana/uber/assets/images_for_readme/home_screen.gif)  |  ![](https://github.com/Alvaro-Orellana/uber/assets/images_for_readme/mis_viajes_screen.gif) | ![](https://github.com/Alvaro-Orellana/uber/assets/images_for_readme/perfil_screen.gif)
+![](https://github.com/Alvaro-Orellana/uber/blob/master/assets/images_for_readme/home_screen.gif)  |  ![](https://github.com/Alvaro-Orellana/uber/blob/master/assets/images_for_readme/mis_viajes_screen.gif) | ![](https://github.com/Alvaro-Orellana/uber/blob/master/assets/images_for_readme/perfil_screen.gif)
 
 <br><br>
 
 ## Route and travel data generation demo
 Example of how the app would work when different directions are typed. This example uses two known locations of the city of Buenos Aires
 
-![](https://github.com/Alvaro-Orellana/uber/assets/images_for_readme/route_demo.gif)
+![](https://github.com/Alvaro-Orellana/uber/blob/master/assets/images_for_readme/route_demo.gif)
 
 ## Installation
 Start installing expo. (Expo is a set of tools and services that allows building of iOS, Android and web apps using JavaScript)
