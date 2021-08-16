@@ -1,32 +1,34 @@
-# uber-clone
+# PickUp
 
-Copy of the client-side functionality of apps like uber or cabify
+Copy of the client side functionality of ride-sharing apps like uber or cabify
 
 <p align="center">
- <img  src="https://github.com/Alvaro-Orellana/PickUp/blob/main/assets/images_for_readme/background_image.png" width="675" height="450">
+ <img  src="https://github.com/Alvaro-Orellana/PickUp/blob/main/assets/images_for_readme/background_image.png" width="590" height="400">
 </p>
 
 # About
-Mobile app made with React Native. It functions as a prototype of what a ride sharing app would be like exclunding the server side.   
-Meaning that 
 
-The app was made using React Native and Firebase and uses APIs from the Google cloud platform. ................
+PickUp is a prototype mobile application for the user-side functionality of a ridesharing app. This means all the features a user would find
+in this type of app are present. Things like a map view, geolocation, places search, route generation and relevant information about the ride for the user.
+What it doesn't do (at least yet) is actually using a backend service to connect to a driver.
 
+This app made with React Native, Expo, Node and services from the google cloud platform.
+<br>
 
-# Demo
+# Features
 <img  align="left" src= "https://github.com/Alvaro-Orellana/PickUp/blob/main/assets/images_for_readme/app_intro.gif">
 
-## &emsp; Features 
 
 <p>
  <!-- These symbols are for html to make spaces and dots -->
  &emsp;&emsp; &#8226; Register and Login  <br><br>
+ &emsp;&emsp; &#8226; Google maps  <br><br>
+ &emsp;&emsp; &#8226; Places search (like in uber, cabify, etc) <br><br>
  &emsp;&emsp; &#8226; Geolocalization  <br><br>
- &emsp;&emsp; &#8226; Places search (the same found in apps like google maps, uber, cabify, etc) <br><br>
  &emsp;&emsp; &#8226; Route generation  <br><br>
- &emsp;&emsp; &#8226; Travel data (distance, time, price) <br><br>
+ &emsp;&emsp; &#8226; Travel data: distance, time, price <br><br>
  &emsp;&emsp; &#8226; Profile data <br><br>
- &emsp;&emsp; &#8226; Travel records (not complete, uses hardcoded test data)<br><br>
+ &emsp;&emsp; &#8226; Trips history (not complete, uses hardcoded test data)<br><br>
 </p>
 
 <!-- This is to position the text under the demo gif otherwise it gets put on the side -->
@@ -38,19 +40,36 @@ The development was made under the supervision of our teacher <a href="https://g
 <br><br>
 
 ## Screens 
-The app has 3 main screen: Home, Viajes (my travels), and perfil (profile). <br><br><br>
+The app has 3 screen: Home, Travels and Profile. 
 
+Home is the main screen with google maps and a search bar, Travels shows the history of trips taken by the user, and Profile shows
+the user info.
+
+<br>
 
 Home Screen             |  Travels screen         | Profile Screen
 :-------------------------:|:-------------------------: |:-------------------------:
 ![](https://github.com/Alvaro-Orellana/PickUp/blob/main/assets/images_for_readme/home_screen.gif)  |  ![](https://github.com/Alvaro-Orellana/PickUp/blob/main/assets/images_for_readme/mis_viajes_screen.gif) | ![](https://github.com/Alvaro-Orellana/PickUp/blob/main/assets/images_for_readme/perfil_screen.gif)
 
+<br>
+
+# App Demo
+
+This is a sample gif provided to show what PickUp looks like in action.
+
+First the user types in where he wants to go. Different options appear, then the user tap on 
+one of them and a route from the current location to the selected destination is generated. Along with the route other information about the trip appear:
+the distance, time, and price. Finally with this preview of the trip the to user can decide to confirm the trip and the app
+will start "looking" for a driver.
 <br><br>
 
-## Route and travel data generation demo
-Example of how the app would work when different directions are typed. This example uses two known locations of the city of Buenos Aires
 
-![](https://github.com/Alvaro-Orellana/PickUp/blob/main/assets/images_for_readme/route_demo.gif)
+<p align="center">
+  <img src="https://github.com/Alvaro-Orellana/PickUp/blob/main/assets/images_for_readme/route_demo.gif" alt="animated" />
+</p>
+
+<br>
+
 
 ## Installation
 Start installing expo. (Expo is a set of tools and services that allows building of iOS, Android and web apps using JavaScript)
@@ -82,4 +101,4 @@ expo start --ios
 - Lautaro Cosso
 
 ## License
-This project is MIT licensed.
+This project is <a href="https://github.com/Alvaro-Orellana/PickUp/blob/main/LICENSE">MIT licensed. </a>
